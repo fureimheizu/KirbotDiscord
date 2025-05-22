@@ -6,7 +6,8 @@ export const initializeDatabase = () => {
     db.run(`
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT,
+            guildId TEXT,
+            userId TEXT,
             points INTEGER DEFAULT 0
         );
     `);
