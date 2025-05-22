@@ -8,18 +8,18 @@ const avvisostream: Command = {
         .setDescription('Imposta un avviso per quando inizia lo streaming di un canale Twitch!')
         .addStringOption(option =>
             option.setName('link')
-            .setDescription('Il link (URL) del canale streaming da tracciare')
-            .setRequired(true)
+                .setDescription('Il link (URL) del canale streaming da tracciare')
+                .setRequired(true)
         )
         .addStringOption(option =>
             option.setName('canale')
-            .setDescription('Il nome del canale in cui verranno pubblicati gli avvisi')
-            .setRequired(true)
+                .setDescription('Il nome del canale in cui verranno pubblicati gli avvisi')
+                .setRequired(true)
         )
-        .addStringOption(option => 
+        .addStringOption(option =>
             option.setName('messaggio')
-            .setDescription('Messaggio da pubblicare quando il canale va in live')
-            .setRequired(false)
+                .setDescription('Messaggio da pubblicare quando il canale va in live')
+                .setRequired(false)
         ),
     async execute(interaction: any) {
         const link = interaction.options.getString('link', true);
@@ -29,16 +29,16 @@ const avvisostream: Command = {
         const regex = /^https?:\/\/(www\.)?twitch\.tv\/([a-zA-Z0-9_]{4,25})\/?$/;
 
         // Channel logic
-        if(!guild) return await interaction.reply('Devi essere in un server Discord per utilizzare questo comando.');
+        if (!guild) return await interaction.reply('Devi essere in un server Discord per utilizzare questo comando.');
         const channel = guild.channels.cache.find(
             (c: { type: ChannelType; name: any; }): c is GuildBasedChannel => c.type === ChannelType.GuildText && c.name === channelName);
-        if(!channel) return await interaction.reply(`Il canale ${channelName} non esiste in questo server.`);
+        if (!channel) return await interaction.reply(`Il canale ${channelName} non esiste in questo server.`);
 
         const channelId = channel.id;
 
         // Link logic
         const match = link.match(regex);
-        if(!match) return interaction.reply(`Il link ${link} non è un valido URL di Twitch.`);
+        if (!match) return interaction.reply(`Il link ${link} non è un valido URL di Twitch.`);
 
         const { id } = guild;
 

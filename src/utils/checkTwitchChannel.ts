@@ -7,11 +7,11 @@ config();
 const regex = /(?:https?:\/\/)?(?:www\.)?twitch\.tv\/([a-zA-Z0-9_]+)/;
 
 const isChannelLive = async (url: string) => {
-    
-    if(!url) return;
+
+    if (!url) return;
     const token = await getTwitchToken()
     const channelLogin = url.match(regex);
-    if(!channelLogin) return;
+    if (!channelLogin) return;
 
     try {
         const response = await axios.get('https://api.twitch.tv/helix/streams', {

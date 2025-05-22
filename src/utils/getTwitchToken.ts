@@ -9,9 +9,9 @@ const getTwitchToken = async () => {
     const clientId = process.env.TWITCH_CLIENT_ID;
     const clientSecret = process.env.TWITCH_CLIENT_SECRET;
 
-    if(!clientId || !clientSecret) return;
+    if (!clientId || !clientSecret) return;
 
-    if(access_token && await validateTwitchToken(access_token)) {
+    if (access_token && await validateTwitchToken(access_token)) {
         return access_token
     }
 

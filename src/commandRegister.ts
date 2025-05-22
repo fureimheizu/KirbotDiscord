@@ -9,7 +9,7 @@ dotenv.config();
 const token = process.env.DISCORD_TOKEN;
 const client_id = process.env.DISCORD_CLIENT_ID;
 
-if(!token || !client_id) {
+if (!token || !client_id) {
     throw new Error("Missing environment variables.");
 }
 
@@ -29,9 +29,9 @@ const rest = new REST({ version: '10' }).setToken(token);
 const refreshApplicationCommands = async () => {
     try {
         console.log('Refreshing application (/) commands...');
-    
+
         await rest.put(Routes.applicationCommands(client_id), { body: commands });
-    
+
         console.log('Successfully reloaded application (/) commands.');
     } catch (error) {
         console.error(error);

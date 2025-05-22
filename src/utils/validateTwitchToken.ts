@@ -9,7 +9,7 @@ const validateTwitchToken = async (token: string) => {
         });
         return "VALID";
     } catch (error: any) {
-        if(error.response.status === 401) {
+        if (error.response.status === 401) {
             return "REFRESH";
         } else {
             console.log('[Error]: Error while validating twitch token.');
