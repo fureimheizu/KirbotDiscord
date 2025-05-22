@@ -1,0 +1,27 @@
+{
+  "name": "kirbot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commands": "tsx ./src/commandRegister.ts",
+    "start": "tsx ./src/index.ts",
+    "build": "tsup src --format esm"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.5.0",
+    "sqlite3": "^5.1.7"
+  }
+}
