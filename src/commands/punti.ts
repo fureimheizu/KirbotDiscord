@@ -7,8 +7,8 @@ const punti: Command = {
         .setName('punti')
         .setDescription('Visualizza quanti punti hai ottenuto fino ad ora scrivendo!'),
     async execute(interaction) {
-        const points = getUserPoints(interaction.user.id, interaction.guild?.id);
-        await interaction.reply(`Poyo! Fino ad ora hai ottenuto un totale di **${points}** inviando messaggi su questo Discord! 📈`);
+        const points = await getUserPoints(interaction.user.id, interaction.guild?.id);
+        await interaction.reply(`Poyo! Fino ad ora hai ottenuto un totale di **${points}** punti inviando messaggi su questo Discord! 📈`);
     }
 }
 

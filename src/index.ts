@@ -91,8 +91,9 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 client.on(Events.MessageCreate, async message => {
-    const query = `SELECT * FROM users WHERE userId = ?`;
+    if(message.author.bot) return;
 
+    const query = `SELECT * FROM users WHERE userId = ?`;
     db.all(query, [message.author.id], async (err, rows: User[]) => {
         if(err) {
             console.error(err.message)
@@ -103,9 +104,9 @@ client.on(Events.MessageCreate, async message => {
         if (rows.length < 1)
         {
             // Insert user into db
-            const insert = `INSERT INTO users (userId, points) VALUES(?, ?)`
-
-            db.prepare(insert).run(message.author.id, 0);
+            const insert = `INSERT INTO users (userId, guildId, points) VALUES(?, ?, ?)`
+            console.log("No user found, inserting new data into users.");
+            db.prepare(insert).run(message.author.id, message.guild?.id, 0);
             return;
         }
 
@@ -115,7 +116,7 @@ client.on(Events.MessageCreate, async message => {
         const total = points + randomPointsGain;
         const update = `UPDATE users SET points = ? WHERE userId = ?`;
 
-        db.prepare(update).run(message.author.id, total);
+        db.prepare(update).run(total, message.author.id);
 
         // Prevent spamming
         recentlyUsersAddedPoints.add(message.author.id);
